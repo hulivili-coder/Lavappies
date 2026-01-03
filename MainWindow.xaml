@@ -20,6 +20,7 @@
             <Button Content="Add App" Click="AddApp_Click" Margin="5"/>
             <Button Content="Remove Selected" Click="RemoveApp_Click" Margin="5"/>
             <Button Content="Launch Selected" Click="LaunchApp_Click" Margin="5"/>
+            <Button Content="Create Portable EXE" Click="CreatePortableExe_Click" Margin="5"/>
             <CheckBox x:Name="AutoStartCheckBox" Content="Auto-start on login" Checked="AutoStartCheckBox_Checked" Unchecked="AutoStartCheckBox_Unchecked" Margin="5"/>
             <CheckBox x:Name="DarkModeCheckBox" Content="Dark Mode" Checked="DarkModeCheckBox_Checked" Unchecked="DarkModeCheckBox_Unchecked" Margin="5"/>
         </StackPanel>

@@ -127,6 +127,62 @@ public partial class MainWindow : Window
         }
     }
 
+    private void CreatePortableExe_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            // First, publish
+            var process = Process.Start(new ProcessStartInfo
+            {
+                FileName = "dotnet",
+                Arguments = "publish --self-contained -r win-x64 -c Release",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            });
+            process.WaitForExit();
+            if (process.ExitCode != 0)
+            {
+                var error = process.StandardError.ReadToEnd();
+                MessageBox.Show($"Error publishing: {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Then, try to create installer with Inno Setup
+            var isccProcess = Process.Start(new ProcessStartInfo
+            {
+                FileName = "ISCC.exe",
+                Arguments = "setup.iss",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            });
+            if (isccProcess != null)
+            {
+                isccProcess.WaitForExit();
+                if (isccProcess.ExitCode == 0)
+                {
+                    MessageBox.Show("Installer created successfully: LavappiesSetup.exe", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    var error = isccProcess.StandardError.ReadToEnd();
+                    MessageBox.Show($"Error creating installer: {error}. Make sure Inno Setup is installed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Portable EXE created. To create installer, install Inno Setup and run ISCC.exe setup.iss", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void AutoStartCheckBox_Checked(object sender, RoutedEventArgs e)
     {
         SetAutoStart(true);

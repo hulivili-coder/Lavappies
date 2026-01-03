@@ -15,7 +15,12 @@ An easy app launcher for Windows.
 
 Download the latest release from [GitHub Releases](https://github.com/hulivili-coder/Lavappies/releases).
 
-Run the installer or the .exe.
+Run the installer (LavappiesSetup.exe) for a guided setup wizard, or use the portable EXE if preferred.
+
+To create your own installer:
+1. Install [Inno Setup](https://jrsoftware.org/isinfo.php).
+2. Run the app and click "Create Portable EXE".
+3. Run `ISCC.exe setup.iss` to build the installer.
 
 ## Usage
 
