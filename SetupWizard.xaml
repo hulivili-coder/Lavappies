@@ -1,0 +1,17 @@
+<Window x:Class="Lavappies.SetupWizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lavappies"
+        mc:Ignorable="d"
+        Title="Lavappies Setup" Height="300" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Welcome to Lavappies!" FontSize="20" Margin="10"/>
+            <TextBlock Text="This is your easy app launcher." TextAlignment="Center" Margin="10"/>
+            <TextBlock Text="Click Next to get started." TextAlignment="Center" Margin="10"/>
+            <Button Content="Next" Click="NextButton_Click" Width="100" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
